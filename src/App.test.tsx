@@ -1,5 +1,5 @@
 
 
-it('renders without crashing', () => {
+test('renders without crashing', () => {
   expect(1).toBe(1)
 });
