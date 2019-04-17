@@ -4,22 +4,28 @@
   "description": "template containing react with typescripts, jest and storybook",
   "main": "App.tsx",
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "jest",
-    "eject": "react-scripts-ts eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "storybook:build": "build-storybook -c .storybook -o storybook/build"
   },
   "dependencies": {
-    "jest": "^24.7.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts-ts": "3.1.0"
+    "react-scripts": "^2.1.8"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@storybook/react": "^5.0.9",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.4",
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
+    "@types/storybook__react": "^4.0.1",
+    "babel-loader": "^8.0.5",
+    "jest": "^23.6.0",
     "typescript": "^3.4.3"
   },
   "repository": {
@@ -31,5 +37,11 @@
   "bugs": {
     "url": "https://github.com/snony/react-typescripts-jest-storybook-template/issues"
   },
-  "homepage": "https://github.com/snony/react-typescripts-jest-storybook-template#readme"
+  "homepage": "https://github.com/snony/react-typescripts-jest-storybook-template#readme",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
