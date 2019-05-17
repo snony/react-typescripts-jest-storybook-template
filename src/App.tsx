@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components/macro'
 // import { Navs } from './data'
-import BadNav from './NavBar'
+import BadNav, { Title, InnerTitle } from './NavBar'
 
 
 export const Content = styled.div`
@@ -36,11 +36,10 @@ export const NavBar2 = styled.div`
 
 `
 
-export const SideBarExpanded2 = styled.div`
-// position: absolute;
+export const OverLaySideBarWrapper = styled.div`
 `
 
-export const ChildOfSideBar = styled.div`
+export const OverlayNavBar = styled.div`
   position: absolute;
   z-index: 1;
   display:none;
@@ -52,37 +51,52 @@ export const SideBar = styled.div`
   background-color: #f7f7f7;
   height: 100%;
   min-width: 40px;
-  &:hover ${ChildOfSideBar}{
-    // width: 200px;
+  &:hover ${OverlayNavBar}{
     height: 100%;
     top: 0;
     display: block;
   }
 `
 
+const ExpandedState = styled.div`
+${Title}{
+  display: none;
+}
+
+${InnerTitle}{
+  display: none;
+}
+`
+
 export const App: React.FC = () => {
+  //TODO change the name for this one
   const [shouldExpand, setShouldExpand] = useState(false)
   return (
     <Container>
       <SideBar >
-        <SideBarExpanded2>
-          {shouldExpand && <ChildOfSideBar>
+        {!shouldExpand &&
+          <SideBarExpanded>
             <BadNav setShouldExpand={setShouldExpand} isExpanded={shouldExpand} />
-          </ChildOfSideBar>}
-        </SideBarExpanded2>
-        {!shouldExpand && <SideBarExpanded>
-          <BadNav setShouldExpand={setShouldExpand} isExpanded={shouldExpand} />
-        </SideBarExpanded>}
+          </SideBarExpanded>}
+        {shouldExpand &&
+          <React.Fragment>
+            <ExpandedState><BadNav setShouldExpand={setShouldExpand} isExpanded={shouldExpand} /></ExpandedState>
+            <OverLaySideBarWrapper>
+              <OverlayNavBar>
+                <BadNav setShouldExpand={setShouldExpand} isExpanded={shouldExpand} />
+              </OverlayNavBar>
+            </OverLaySideBarWrapper>
+        </React.Fragment>}
       </SideBar>
       <Content>
-        The content is Here and much more
+          The content is Here and much more
       </Content>
     </Container>
-  );
-}
-
-export const RealNavBar = styled.div`
-  
-`
-
+      );
+    }
+    
+    export const RealNavBar = styled.div`
+      
+    `
+    
 export default App;
